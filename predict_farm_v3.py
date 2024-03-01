@@ -8,11 +8,12 @@ from tqdm import tqdm
 import concurrent.futures
 import warnings, cv2, os
 import tensorflow as tf
-import Vectorization
 from skimage.morphology import skeletonize, remove_small_holes, remove_small_objects
 from rio_tiler.io import COGReader
 from tensorflow.compat.v1.keras.backend import set_session
 
+# from u2net import Vectorization
+exit()
 import sys
 sys.path.append('/home/skymap/big_data/Giang_workspace/Task_110123_Farm_boundary_Edge_Detect/code/u2net')
 from models.import_module import DexiNed, Model_U2Netp, Model_U2Net
@@ -230,6 +231,7 @@ def raster_to_vector(path_in, path_out, threshold_distance, threshold_connect):
     Vectorization.save_polygon(np.pad(skeleton, pad_width=1).astype(np.intc), threshold_distance, threshold_connect, transform, projstr, path_out)
     print("Done!!!")
     
+
 if __name__=="__main__":
     # img_path = r"/mnt/Nam/public/Linh/mongolia_fullmonth/LC09_L2SP_131027_20220214_20220216_02_T1.tif"
     # out_path = r"/mnt/Nam/public/Linh/mongolia_fullmonth/LC09_L2SP_131027_20220214_20220216_02_T1_crop.tif"
